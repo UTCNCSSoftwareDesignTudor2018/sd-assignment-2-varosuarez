@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>  
+    <link rel="stylesheet" type="text/css" href="css/info.css"/>
+</head>
+<body>
+	  <h2>You are logged as a Teacher!</h2>
+	  <p> 
+	  Teacher Name: <span th:text="${teacher.name}"></span>.  <br/>
+	  Teacher Surname: <span th:text="${teacher.surname}"></span>. <br/>
+	  Teacher ID: <span th:text="${teacher.idnumber}"></span>.   <br/>
+	  Teacher Address: <span th:text="${teacher.address}"></span>.   <br/>
+	  </p>
+
+	  <h2>Teaching Courses</h2>
+	  <table id="myTableTeachingCourses">
+					<tr>
+					<th>Nº</th>
+					<th>Course Name</th>
+					<th>Start Date</th>
+					<th>End Date</th>
+			   </tr>
+			   <tr th:each="course,iterationStatus  : ${teacher.teachingCourses}">
+			   		<td th:text="${iterationStatus.count}">1</td>
+			   		<td th:text="${course.coursename}"></td>
+			   		<td th:text="${course.start_date}"></td>
+			   		<td th:text="${course.end_date}"></td>	
+			   </tr>
+	  </table>
+		
+	  <h2>List of the Students in Teached Courses</h2>
+      <table id="myTableStudents">
+					<tr>
+					<th>Nº</th>
+					<th>Name</th>
+					<th>Surname</th>
+					<th>ID</th>
+					<th>Course</th>
+					<th>Grade</th>
+			   </tr>
+			   <tr th:each="enrolment,iterationStatus  : ${enrolments}">
+			   		<td th:text="${iterationStatus.count}">1</td>
+			   		<td th:text="${enrolment.student.name}"></td>
+			   		<td th:text="${enrolment.student.surname}"></td>
+			   		<td th:text="${enrolment.student.idnumber}"></td>	
+			   		<td th:text="${enrolment.course.coursename}"></td>	
+			   		<td th:text="${enrolment.grade}"></td> 
+			   </tr>
+		</table>
+				 
+		<br/>
+		 	 
+		 	 
+		<h2>Student Creation Section</h2>
+		<form class="add-form" action="#" th:action="@{/createStudent}" method="post">
+		      <input type="text" name="name" placeholder="name"/>
+		      <input type="text" name="surname" placeholder="surname"/>
+		       <input type="text" name="ID" placeholder="ID"/>
+		      <input type="text" name="address" placeholder="address"/>
+		      <input type="text" name="code" placeholder="code"/>
+		      <button type="submit" value="Submit" >Create</button>
+         </form>
+         
+        <h2>Student Delete Section</h2>
+		<form class="add-form" action="#" th:action="@{/deleteStudent}" method="post">
+		      <input type="text" name="IDdelete" placeholder="IDdelete"/>
+		      <button type="submit" value="Submit" >delete</button>
+         </form>
+		 
+		 
+		<h2>Enroll Student Section</h2>
+		<form class="add-form" action="#" th:action="@{/enrolStudent}" method="post">
+		      <input type="text" name="IDEnrol" placeholder="IDEnrol"/>
+		      <input type="text" name="courseNameEnrol" placeholder="courseNameEnrol"/>
+		      <button type="submit" value="Submit" >Enrol</button>
+        </form>
+        
+        <h2>Grade Student Section</h2>
+		<form class="add-form" action="#" th:action="@{/gradeStudent}" method="post">
+		      <input type="text" name="IDGrade" placeholder="IDGrade"/>
+		      <input type="text" name="courseNameGrade" placeholder="courseNameGrade"/>
+		       <input type="text" name="Grade" placeholder="Grade"/>
+		      <button type="submit" value="Submit" >Grade</button>
+        </form>
+        
+        <h2>Generate Report Section</h2>
+		<form class="add-form" action="#" th:action="@{/generateReport}" method="post">
+		      <button type="submit" value="Submit" >Generate</button>
+        </form>
+		 
+		<br/>
+		 <form class="create-form" action="#" th:action="@{/OutTeacher}" method="post">
+		    <button type="submit" value="Submit" >Log Out</button>
+		 </form>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8"/>
+  <title>Flat HTML5/CSS3 Login Form</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>  
+  <link rel="stylesheet" type="text/css" href="css/style.css"/> 
+</head>
+<body>
+  <div class="login-page">
+  <div class="form">
+  <h1 align="center">Main View Page</h1>
+    <form class="login-form" action="#" th:action="@{/loginTeacher}" method="post">
+      <button type="submit" value="Submit" >login as teacher</button>
+    </form>
+    <form class="login-form" action="#" th:action="@{/loginStudent}" method="post">
+      <button type="submit" value="Submit" >login as Student</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>
